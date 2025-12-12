@@ -1,0 +1,11 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageVersion Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+    <PackageVersion Include="Microsoft.ReverseProxy" Version="2.2.0" />
+    <PackageVersion Include="AspNetCore.HealthChecks.MySql" Version="8.0.1" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>Jhm.LogisticsSafetyPlatform.Shared.Contracts</RootNamespace>
+  </PropertyGroup>
+</Project>

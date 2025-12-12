@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>Jhm.LogisticsSafetyPlatform.Shared.ServiceDefaults</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" />
+    <PackageReference Include="AspNetCore.HealthChecks.MySql" />
+  </ItemGroup>
+</Project>
