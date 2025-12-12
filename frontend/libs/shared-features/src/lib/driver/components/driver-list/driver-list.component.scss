@@ -1,0 +1,195 @@
+.driver-list-container {
+  padding: var(--jhm-space-6);
+  background-color: var(--jhm-bg-primary);
+  min-height: 100vh;
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--jhm-space-6);
+    padding-bottom: var(--jhm-space-4);
+    border-bottom: 1px solid var(--jhm-border-light);
+
+    .page-title {
+      font-size: var(--jhm-text-2xl);
+      font-weight: var(--jhm-font-bold);
+      color: var(--jhm-text-primary);
+      margin: 0;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: var(--jhm-space-3);
+
+      button {
+        display: flex;
+        align-items: center;
+        gap: var(--jhm-space-2);
+        padding: var(--jhm-space-2) var(--jhm-space-4);
+        font-size: var(--jhm-text-sm);
+        border-radius: var(--jhm-radius-md);
+      }
+    }
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--jhm-space-4);
+    margin-bottom: var(--jhm-space-6);
+
+    .stat-card {
+      background-color: var(--jhm-bg-primary);
+      border: 1px solid var(--jhm-border-light);
+      border-radius: var(--jhm-radius-lg);
+      padding: var(--jhm-space-4);
+      display: flex;
+      align-items: center;
+      gap: var(--jhm-space-3);
+      box-shadow: var(--jhm-shadow-sm);
+
+      .stat-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: var(--jhm-radius-lg);
+        background-color: var(--jhm-primary-50);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        ion-icon {
+          font-size: 24px;
+          color: var(--jhm-primary-500);
+        }
+
+        .text-success {
+          color: var(--jhm-success);
+        }
+
+        .text-error {
+          color: var(--jhm-error);
+        }
+      }
+
+      .stat-content {
+        flex: 1;
+
+        .stat-value {
+          font-size: var(--jhm-text-xl);
+          font-weight: var(--jhm-font-bold);
+          color: var(--jhm-text-primary);
+          line-height: var(--jhm-leading-tight);
+        }
+
+        .stat-label {
+          font-size: var(--jhm-text-sm);
+          color: var(--jhm-text-secondary);
+          margin-top: var(--jhm-space-1);
+        }
+      }
+    }
+  }
+
+  .search-section {
+    background-color: var(--jhm-bg-secondary);
+    border-radius: var(--jhm-radius-lg);
+    padding: var(--jhm-space-4);
+    margin-bottom: var(--jhm-space-6);
+  }
+
+  .table-section {
+    background-color: var(--jhm-bg-primary);
+    border-radius: var(--jhm-radius-lg);
+    border: 1px solid var(--jhm-border-light);
+    overflow: hidden;
+    box-shadow: var(--jhm-shadow-sm);
+  }
+}
+
+.driver-info {
+  .driver-name {
+    font-weight: var(--jhm-font-medium);
+    color: var(--jhm-text-primary);
+    margin-bottom: var(--jhm-space-1);
+  }
+
+  .driver-id-card {
+    font-size: var(--jhm-text-xs);
+    color: var(--jhm-text-tertiary);
+  }
+}
+
+.license-expiry {
+  font-size: var(--jhm-text-xs);
+  color: var(--jhm-text-secondary);
+
+  span {
+    padding: var(--jhm-space-1) var(--jhm-space-2);
+    background-color: var(--jhm-warning-light);
+    border-radius: var(--jhm-radius-sm);
+    color: var(--jhm-warning-dark);
+  }
+}
+
+.empty-state {
+  text-align: center;
+  padding: var(--jhm-space-16) var(--jhm-space-4);
+  color: var(--jhm-text-secondary);
+
+  ion-icon {
+    color: var(--jhm-neutral-400);
+    margin-bottom: var(--jhm-space-4);
+  }
+
+  h3 {
+    font-size: var(--jhm-text-lg);
+    font-weight: var(--jhm-font-medium);
+    color: var(--jhm-text-primary);
+    margin: 0 0 var(--jhm-space-2) 0;
+  }
+
+  p {
+    font-size: var(--jhm-text-sm);
+    margin: 0 0 var(--jhm-space-4) 0;
+  }
+
+  button {
+    padding: var(--jhm-space-3) var(--jhm-space-6);
+  }
+}
+
+// 响应式设计
+@media (max-width: 767px) {
+  .driver-list-container {
+    padding: var(--jhm-space-4);
+
+    .page-header {
+      flex-direction: column;
+      gap: var(--jhm-space-3);
+      align-items: stretch;
+
+      .header-actions {
+        justify-content: center;
+
+        button {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+    }
+
+    .stats-grid {
+      grid-template-columns: 1fr;
+      gap: var(--jhm-space-3);
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .driver-list-container {
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}

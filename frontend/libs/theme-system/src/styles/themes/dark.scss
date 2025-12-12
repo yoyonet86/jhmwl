@@ -1,0 +1,50 @@
+/**
+ * 深色主题配置文件
+ * 适用于低光环境或用户偏好，提供护眼的深色界面
+ */
+
+@import '../variables.scss';
+
+[data-theme="dark"] {
+  // 深色主题专用样式
+  
+  body {
+    background-color: var(--jhm-bg-primary);
+    color: var(--jhm-text-primary);
+  }
+  
+  .card {
+    background-color: var(--jhm-bg-secondary);
+    border-color: var(--jhm-border-medium);
+    color: var(--jhm-text-primary);
+  }
+  
+  .btn-primary {
+    background-color: var(--jhm-primary-400);
+    border-color: var(--jhm-primary-400);
+    color: var(--jhm-text-primary);
+  }
+  
+  .btn-primary:hover {
+    background-color: var(--jhm-primary-300);
+    border-color: var(--jhm-primary-300);
+  }
+  
+  // 深色主题下的输入框样式
+  input, textarea, select {
+    background-color: var(--jhm-bg-tertiary);
+    border-color: var(--jhm-border-medium);
+    color: var(--jhm-text-primary);
+  }
+  
+  // 深色主题下的表格样式
+  .table {
+    background-color: var(--jhm-bg-secondary);
+    color: var(--jhm-text-primary);
+  }
+  
+  .table th {
+    background-color: var(--jhm-bg-tertiary);
+    color: var(--jhm-text-secondary);
+  }
+}

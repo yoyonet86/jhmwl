@@ -1,0 +1,283 @@
+/**
+ * 全局样式文件
+ * 提供基于主题系统的通用样式类
+ */
+
+@import './variables.scss';
+
+// ===== 实用工具类 =====
+
+// 文字颜色
+.text-primary { color: var(--jhm-text-primary); }
+.text-secondary { color: var(--jhm-text-secondary); }
+.text-tertiary { color: var(--jhm-text-tertiary); }
+.text-disabled { color: var(--jhm-text-disabled); }
+
+// 文字大小
+.text-xs { font-size: var(--jhm-text-xs); }
+.text-sm { font-size: var(--jhm-text-sm); }
+.text-base { font-size: var(--jhm-text-base); }
+.text-lg { font-size: var(--jhm-text-lg); }
+.text-xl { font-size: var(--jhm-text-xl); }
+.text-2xl { font-size: var(--jhm-text-2xl); }
+.text-3xl { font-size: var(--jhm-text-3xl); }
+.text-4xl { font-size: var(--jhm-text-4xl); }
+
+// 字体粗细
+.font-thin { font-weight: var(--jhm-font-thin); }
+.font-light { font-weight: var(--jhm-font-light); }
+.font-normal { font-weight: var(--jhm-font-normal); }
+.font-medium { font-weight: var(--jhm-font-medium); }
+.font-semibold { font-weight: var(--jhm-font-semibold); }
+.font-bold { font-weight: var(--jhm-font-bold); }
+.font-extrabold { font-weight: var(--jhm-font-extrabold); }
+.font-black { font-weight: var(--jhm-font-black); }
+
+// 行高
+.leading-none { line-height: var(--jhm-leading-none); }
+.leading-tight { line-height: var(--jhm-leading-tight); }
+.leading-snug { line-height: var(--jhm-leading-snug); }
+.leading-normal { line-height: var(--jhm-leading-normal); }
+.leading-relaxed { line-height: var(--jhm-leading-relaxed); }
+.leading-loose { line-height: var(--jhm-leading-loose); }
+
+// 间距
+.m-0 { margin: var(--jhm-space-0); }
+.m-1 { margin: var(--jhm-space-1); }
+.m-2 { margin: var(--jhm-space-2); }
+.m-3 { margin: var(--jhm-space-3); }
+.m-4 { margin: var(--jhm-space-4); }
+.m-5 { margin: var(--jhm-space-5); }
+.m-6 { margin: var(--jhm-space-6); }
+.m-8 { margin: var(--jhm-space-8); }
+.m-10 { margin: var(--jhm-space-10); }
+.m-12 { margin: var(--jhm-space-12); }
+.m-16 { margin: var(--jhm-space-16); }
+.m-20 { margin: var(--jhm-space-20); }
+.m-24 { margin: var(--jhm-space-24); }
+
+.p-0 { padding: var(--jhm-space-0); }
+.p-1 { padding: var(--jhm-space-1); }
+.p-2 { padding: var(--jhm-space-2); }
+.p-3 { padding: var(--jhm-space-3); }
+.p-4 { padding: var(--jhm-space-4); }
+.p-5 { padding: var(--jhm-space-5); }
+.p-6 { padding: var(--jhm-space-6); }
+.p-8 { padding: var(--jhm-space-8); }
+.p-10 { padding: var(--jhm-space-10); }
+.p-12 { padding: var(--jhm-space-12); }
+.p-16 { padding: var(--jhm-space-16); }
+.p-20 { padding: var(--jhm-space-20); }
+.p-24 { padding: var(--jhm-space-24); }
+
+// 圆角
+.rounded-none { border-radius: var(--jhm-radius-none); }
+.rounded-sm { border-radius: var(--jhm-radius-sm); }
+.rounded-md { border-radius: var(--jhm-radius-md); }
+.rounded-lg { border-radius: var(--jhm-radius-lg); }
+.rounded-xl { border-radius: var(--jhm-radius-xl); }
+.rounded-2xl { border-radius: var(--jhm-radius-2xl); }
+.rounded-full { border-radius: var(--jhm-radius-full); }
+
+// 阴影
+.shadow-sm { box-shadow: var(--jhm-shadow-sm); }
+.shadow-md { box-shadow: var(--jhm-shadow-md); }
+.shadow-lg { box-shadow: var(--jhm-shadow-lg); }
+.shadow-xl { box-shadow: var(--jhm-shadow-xl); }
+
+// 背景色
+.bg-primary { background-color: var(--jhm-bg-primary); }
+.bg-secondary { background-color: var(--jhm-bg-secondary); }
+.bg-tertiary { background-color: var(--jhm-bg-tertiary); }
+
+// 边框色
+.border-light { border-color: var(--jhm-border-light); }
+.border-medium { border-color: var(--jhm-border-medium); }
+.border-dark { border-color: var(--jhm-border-dark); }
+
+// 状态色
+.text-success { color: var(--jhm-success); }
+.text-warning { color: var(--jhm-warning); }
+.text-error { color: var(--jhm-error); }
+.text-info { color: var(--jhm-info); }
+
+.bg-success { background-color: var(--jhm-success); }
+.bg-warning { background-color: var(--jhm-warning); }
+.bg-error { background-color: var(--jhm-error); }
+.bg-info { background-color: var(--jhm-info); }
+
+// ===== 组件样式 =====
+
+// 按钮
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--jhm-space-2) var(--jhm-space-4);
+  font-size: var(--jhm-text-sm);
+  font-weight: var(--jhm-font-medium);
+  border-radius: var(--jhm-radius-md);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  @extend .btn;
+  background-color: var(--jhm-primary-500);
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--jhm-primary-600);
+}
+
+.btn-secondary {
+  @extend .btn;
+  background-color: var(--jhm-bg-secondary);
+  color: var(--jhm-text-primary);
+  border: 1px solid var(--jhm-border-medium);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: var(--jhm-bg-tertiary);
+}
+
+.btn-success {
+  @extend .btn;
+  background-color: var(--jhm-success);
+  color: white;
+}
+
+.btn-warning {
+  @extend .btn;
+  background-color: var(--jhm-warning);
+  color: white;
+}
+
+.btn-error {
+  @extend .btn;
+  background-color: var(--jhm-error);
+  color: white;
+}
+
+// 卡片
+.card {
+  background-color: var(--jhm-bg-primary);
+  border: 1px solid var(--jhm-border-light);
+  border-radius: var(--jhm-radius-lg);
+  box-shadow: var(--jhm-shadow-sm);
+  padding: var(--jhm-space-6);
+}
+
+.card-header {
+  margin-bottom: var(--jhm-space-4);
+  padding-bottom: var(--jhm-space-4);
+  border-bottom: 1px solid var(--jhm-border-light);
+}
+
+.card-title {
+  font-size: var(--jhm-text-lg);
+  font-weight: var(--jhm-font-semibold);
+  color: var(--jhm-text-primary);
+  margin: 0;
+}
+
+// 表格
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--jhm-bg-primary);
+}
+
+.table th,
+.table td {
+  padding: var(--jhm-space-3);
+  text-align: left;
+  border-bottom: 1px solid var(--jhm-border-light);
+}
+
+.table th {
+  background-color: var(--jhm-bg-secondary);
+  font-weight: var(--jhm-font-medium);
+  color: var(--jhm-text-secondary);
+  font-size: var(--jhm-text-sm);
+}
+
+.table td {
+  color: var(--jhm-text-primary);
+}
+
+// 输入框
+.input {
+  display: block;
+  width: 100%;
+  padding: var(--jhm-space-3);
+  font-size: var(--jhm-text-base);
+  background-color: var(--jhm-bg-primary);
+  border: 1px solid var(--jhm-border-medium);
+  border-radius: var(--jhm-radius-md);
+  color: var(--jhm-text-primary);
+  transition: border-color 0.2s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--jhm-primary-500);
+  box-shadow: 0 0 0 3px rgba(30, 144, 255, 0.1);
+}
+
+// 标签
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--jhm-space-1) var(--jhm-space-2);
+  font-size: var(--jhm-text-xs);
+  font-weight: var(--jhm-font-medium);
+  border-radius: var(--jhm-radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badge-success {
+  @extend .badge;
+  background-color: var(--jhm-success-light);
+  color: var(--jhm-success-dark);
+}
+
+.badge-warning {
+  @extend .badge;
+  background-color: var(--jhm-warning-light);
+  color: var(--jhm-warning-dark);
+}
+
+.badge-error {
+  @extend .badge;
+  background-color: var(--jhm-error-light);
+  color: var(--jhm-error-dark);
+}
+
+.badge-info {
+  @extend .badge;
+  background-color: var(--jhm-info-light);
+  color: var(--jhm-info-dark);
+}
+
+// 响应式工具类
+@media (max-width: 767px) {
+  .mobile-hidden { display: none !important; }
+  .mobile-block { display: block !important; }
+  .mobile-flex { display: flex !important; }
+}
+
+@media (min-width: 768px) {
+  .desktop-hidden { display: none !important; }
+  .desktop-block { display: block !important; }
+  .desktop-flex { display: flex !important; }
+}

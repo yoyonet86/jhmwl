@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>司机管理</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="primary" (click)="onAddDriver()">
+        <ion-icon name="add"></ion-icon>
+        添加司机
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="driver-list-page">
+    <!-- 司机列表组件 -->
+    <sf-driver-list
+      [drivers]="drivers"
+      [loading]="loading"
+      [total]="total"
+      [page]="page"
+      [size]="size"
+      [searchParams]="searchParams"
+      (pageChange)="onPageChange($event)"
+      (searchChange)="onSearchChange($event)"
+      (driverSelect)="onViewDriver($event)"
+      (driverEdit)="onEditDriver($event)"
+      (driverDelete)="onDeleteDriver($event)">
+    </sf-driver-list>
+  </div>
+</ion-content>

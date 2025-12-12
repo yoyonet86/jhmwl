@@ -1,0 +1,51 @@
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--jhm-space-1) var(--jhm-space-2);
+  font-size: var(--jhm-text-xs);
+  font-weight: var(--jhm-font-medium);
+  border-radius: var(--jhm-radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: var(--jhm-leading-tight);
+  
+  // 默认样式
+  background-color: var(--jhm-neutral-200);
+  color: var(--jhm-neutral-700);
+  
+  // 成功状态
+  &.badge-success {
+    background-color: var(--jhm-success-light);
+    color: var(--jhm-success-dark);
+  }
+  
+  // 警告状态
+  &.badge-warning {
+    background-color: var(--jhm-warning-light);
+    color: var(--jhm-warning-dark);
+  }
+  
+  // 错误状态
+  &.badge-error {
+    background-color: var(--jhm-error-light);
+    color: var(--jhm-error-dark);
+  }
+  
+  // 信息状态
+  &.badge-info {
+    background-color: var(--jhm-info-light);
+    color: var(--jhm-info-dark);
+  }
+  
+  // 次要状态
+  &.badge-secondary {
+    background-color: var(--jhm-neutral-200);
+    color: var(--jhm-neutral-700);
+  }
+  
+  // 主要状态
+  &.badge-primary {
+    background-color: var(--jhm-primary-100);
+    color: var(--jhm-primary-700);
+  }
+}
