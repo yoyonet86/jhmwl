@@ -9,16 +9,24 @@ namespace Jhm.LogisticsSafetyPlatform.AuthService.Controllers;
 public class AuthenticationController : ControllerBase
 {
     private readonly IAuthenticationService _authService;
+    private readonly IVerificationCodeService _verificationCodeService;
+    private readonly ICaptchaService _captchaService;
     private readonly ILogger<AuthenticationController> _logger;
 
-    public AuthenticationController(IAuthenticationService authService, ILogger<AuthenticationController> logger)
+    public AuthenticationController(
+        IAuthenticationService authService,
+        IVerificationCodeService verificationCodeService,
+        ICaptchaService captchaService,
+        ILogger<AuthenticationController> logger)
     {
         _authService = authService;
+        _verificationCodeService = verificationCodeService;
+        _captchaService = captchaService;
         _logger = logger;
     }
 
-    [HttpPost("login")]
-    public async Task<IActionResult> Login([FromBody] LoginRequest request)
+    [HttpPost("login/password")]
+    public async Task<IActionResult> LoginWithPassword([FromBody] PasswordLoginRequest request)
     {
         if (!ModelState.IsValid)
         {
@@ -28,11 +36,12 @@ public class AuthenticationController : ControllerBase
         var ipAddress = GetClientIpAddress();
         var userAgent = Request.Headers["User-Agent"].ToString();
 
-        var result = await _authService.LoginAsync(request.Username, request.Password, ipAddress, userAgent);
+        var result = await _authService.LoginWithPhoneAndPasswordAsync(
+            request.Phone, request.Password, request.CaptchaKey, ipAddress, userAgent);
 
         if (!result.Success)
         {
-            _logger.LogWarning("Login failed for username: {Username}", request.Username);
+            _logger.LogWarning("Password login failed for phone: {Phone}", request.Phone);
             return Unauthorized(new { message = result.Message });
         }
 
@@ -43,6 +52,110 @@ public class AuthenticationController : ControllerBase
             refreshToken = result.RefreshToken,
             user = result.User
         });
+    }
+
+    [HttpPost("login/code")]
+    public async Task<IActionResult> LoginWithCode([FromBody] CodeLoginRequest request)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        var ipAddress = GetClientIpAddress();
+        var userAgent = Request.Headers["User-Agent"].ToString();
+
+        var result = await _authService.LoginWithPhoneAndCodeAsync(
+            request.Phone, request.Code, ipAddress, userAgent);
+
+        if (!result.Success)
+        {
+            _logger.LogWarning("SMS login failed for phone: {Phone}", request.Phone);
+            return Unauthorized(new { message = result.Message });
+        }
+
+        return Ok(new
+        {
+            success = true,
+            accessToken = result.AccessToken,
+            refreshToken = result.RefreshToken,
+            user = result.User
+        });
+    }
+
+    [HttpPost("request-code")]
+    public async Task<IActionResult> RequestVerificationCode([FromBody] RequestCodeRequest request)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        try
+        {
+            var code = await _verificationCodeService.GenerateAndSendCodeAsync(request.Phone, "LOGIN");
+            _logger.LogInformation("Verification code sent to phone: {Phone}", request.Phone);
+
+            return Ok(new
+            {
+                success = true,
+                message = "验证码已发送到您的手机",
+                expiresIn = 300
+            });
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error requesting verification code for phone: {Phone}", request.Phone);
+            return StatusCode(500, new { message = "Error requesting verification code" });
+        }
+    }
+
+    [HttpPost("captcha")]
+    public async Task<IActionResult> CreateCaptchaChallenge()
+    {
+        try
+        {
+            var ipAddress = GetClientIpAddress();
+            var challenge = await _captchaService.CreateChallengeAsync("", ipAddress);
+
+            return Ok(new
+            {
+                success = true,
+                challengeKey = challenge.ChallengeKey,
+                challenge = challenge.ChallengeImageUrl,
+                expiresIn = 300
+            });
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error creating CAPTCHA challenge");
+            return StatusCode(500, new { message = "Error creating CAPTCHA challenge" });
+        }
+    }
+
+    [HttpPost("verify-captcha")]
+    public async Task<IActionResult> VerifyCaptcha([FromBody] VerifyCaptchaRequest request)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        try
+        {
+            var result = await _captchaService.VerifyChallengeAsync(request.ChallengeKey, request.Answer);
+            if (!result)
+            {
+                return BadRequest(new { message = "CAPTCHA verification failed" });
+            }
+
+            return Ok(new { success = true, message = "CAPTCHA verified" });
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error verifying CAPTCHA");
+            return StatusCode(500, new { message = "Error verifying CAPTCHA" });
+        }
     }
 
     [HttpPost("refresh")]
@@ -124,10 +237,28 @@ public class AuthenticationController : ControllerBase
     }
 }
 
-public class LoginRequest
+public class PasswordLoginRequest
 {
-    public string Username { get; set; } = null!;
+    public string Phone { get; set; } = null!;
     public string Password { get; set; } = null!;
+    public string CaptchaKey { get; set; } = null!;
+}
+
+public class CodeLoginRequest
+{
+    public string Phone { get; set; } = null!;
+    public string Code { get; set; } = null!;
+}
+
+public class RequestCodeRequest
+{
+    public string Phone { get; set; } = null!;
+}
+
+public class VerifyCaptchaRequest
+{
+    public string ChallengeKey { get; set; } = null!;
+    public string Answer { get; set; } = null!;
 }
 
 public class RefreshTokenRequest

@@ -87,12 +87,13 @@ public class DatabaseSeederService : IDatabaseSeederService
 
     private async Task SeedDefaultAdminUser()
     {
-        const string adminUsername = "admin";
-        const string adminEmail = "admin@logisticssafety.local";
+        const string adminPhone = "13800138000";
         const string adminPassword = "AdminP@ssw0rd123";
         const long platformOrgId = 1; // Platform organization ID
 
-        var adminUserExists = await _userManager.FindByNameAsync(adminUsername);
+        var adminUserExists = await _userManager.Users
+            .FirstOrDefaultAsync(u => u.PhoneNumber == adminPhone);
+
         if (adminUserExists != null)
         {
             _logger.LogInformation("Default admin user already exists");
@@ -101,14 +102,15 @@ public class DatabaseSeederService : IDatabaseSeederService
 
         var adminUser = new ApplicationUser
         {
-            UserName = adminUsername,
-            Email = adminEmail,
-            EmailConfirmed = true,
+            UserName = adminPhone,
+            PhoneNumber = adminPhone,
+            Phone = adminPhone,
             OrganizationId = platformOrgId,
-            FirstName = "System",
-            LastName = "Administrator",
+            FirstName = "系统",
+            LastName = "管理员",
             UserType = "ADMIN",
             Status = "ACTIVE",
+            PhoneVerified = true,
             LanguagePreference = "zh",
             Timezone = "Asia/Shanghai"
         };

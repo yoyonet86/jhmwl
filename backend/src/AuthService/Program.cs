@@ -20,13 +20,24 @@ builder.Services.AddDbContext<AuthDbContext>(options =>
 // Configure Identity
 builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
     {
+        // Password policy
         options.Password.RequiredLength = 8;
         options.Password.RequireDigit = true;
         options.Password.RequireNonAlphanumeric = true;
         options.Password.RequireUppercase = true;
-        options.User.RequireUniqueEmail = true;
+        
+        // User policy - phone-based authentication (no email required)
+        options.User.RequireUniqueEmail = false;
+        options.User.AllowedUserNameCharacters = "0123456789";
+        
+        // Lockout policy
         options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
         options.Lockout.MaxFailedAccessAttempts = 5;
+        options.Lockout.AllowedForNewUsers = true;
+        
+        // Token policy
+        options.Tokens.EmailConfirmationTokenProvider = TokenOptions.DefaultEmailProvider;
+        options.Tokens.PasswordResetTokenProvider = TokenOptions.DefaultProvider;
     })
     .AddEntityFrameworkStores<AuthDbContext>()
     .AddDefaultTokenProviders();
@@ -64,6 +75,8 @@ builder.Services.AddAuthorization();
 // Register services
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddScoped<IRolePermissionService, RolePermissionService>();
+builder.Services.AddScoped<IVerificationCodeService, VerificationCodeService>();
+builder.Services.AddScoped<ICaptchaService, CaptchaService>();
 
 builder.Services.AddControllers();
 

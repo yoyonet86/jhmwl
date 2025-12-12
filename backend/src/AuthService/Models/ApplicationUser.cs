@@ -12,8 +12,8 @@ public class ApplicationUser : IdentityUser<long>
     public long OrganizationId { get; set; }
 
     [Required]
-    [Column("username", TypeName = "varchar(50)")]
-    public string? Username { get; set; }
+    [Column("phone", TypeName = "varchar(20)")]
+    public string? Phone { get; set; }
 
     [Required]
     [Column("first_name", TypeName = "varchar(100)")]
@@ -29,11 +29,17 @@ public class ApplicationUser : IdentityUser<long>
     [Column("status", TypeName = "varchar(50)")]
     public string Status { get; set; } = "PENDING";
 
+    [Column("phone_verified")]
+    public bool PhoneVerified { get; set; } = false;
+
     [Column("last_login_at")]
     public DateTime? LastLoginAt { get; set; }
 
     [Column("last_login_ip", TypeName = "varchar(45)")]
     public string? LastLoginIp { get; set; }
+
+    [Column("last_login_method", TypeName = "varchar(20)")]
+    public string? LastLoginMethod { get; set; }
 
     [Column("failed_login_attempts")]
     public int FailedLoginAttempts { get; set; } = 0;
@@ -46,12 +52,6 @@ public class ApplicationUser : IdentityUser<long>
 
     [Column("password_reset_expires_at")]
     public DateTime? PasswordResetExpiresAt { get; set; }
-
-    [Column("mfa_enabled")]
-    public bool MfaEnabled { get; set; } = false;
-
-    [Column("mfa_secret", TypeName = "varchar(255)")]
-    public string? MfaSecret { get; set; }
 
     [Column("language_preference", TypeName = "varchar(10)")]
     public string LanguagePreference { get; set; } = "zh";

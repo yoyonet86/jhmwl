@@ -12,6 +12,8 @@ public class AuthDbContext : IdentityDbContext<ApplicationUser, ApplicationRole,
     }
 
     public DbSet<RefreshToken> RefreshTokens { get; set; } = null!;
+    public DbSet<VerificationCode> VerificationCodes { get; set; } = null!;
+    public DbSet<CaptchaChallenge> CaptchaChallenges { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -33,7 +35,7 @@ public class AuthDbContext : IdentityDbContext<ApplicationUser, ApplicationRole,
             .HasForeignKey(rt => rt.UserId)
             .OnDelete(DeleteBehavior.Cascade);
 
-        // Add indexes
+        // Add indexes for RefreshToken
         modelBuilder.Entity<RefreshToken>()
             .HasIndex(rt => new { rt.UserId, rt.Token });
 
@@ -42,5 +44,30 @@ public class AuthDbContext : IdentityDbContext<ApplicationUser, ApplicationRole,
 
         modelBuilder.Entity<RefreshToken>()
             .HasIndex(rt => rt.RevokedAt);
+
+        // Configure VerificationCode
+        modelBuilder.Entity<VerificationCode>()
+            .HasOne(vc => vc.User)
+            .WithMany()
+            .HasForeignKey(vc => vc.UserId)
+            .OnDelete(DeleteBehavior.SetNull);
+
+        // Add indexes for VerificationCode
+        modelBuilder.Entity<VerificationCode>()
+            .HasIndex(vc => new { vc.Phone, vc.CodeType });
+
+        modelBuilder.Entity<VerificationCode>()
+            .HasIndex(vc => vc.ExpiresAt);
+
+        modelBuilder.Entity<VerificationCode>()
+            .HasIndex(vc => vc.VerifiedAt);
+
+        // Configure CaptchaChallenge
+        modelBuilder.Entity<CaptchaChallenge>()
+            .HasIndex(cc => cc.ChallengeKey)
+            .IsUnique();
+
+        modelBuilder.Entity<CaptchaChallenge>()
+            .HasIndex(cc => cc.ExpiresAt);
     }
 }
