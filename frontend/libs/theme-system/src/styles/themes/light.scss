@@ -1,0 +1,32 @@
+/**
+ * 浅色主题配置文件
+ * 适用于日常使用场景，提供清晰明亮的视觉体验
+ */
+
+@import '../variables.scss';
+
+[data-theme="light"] {
+  // 覆盖浅色主题特定样式（如果需要与默认值不同）
+  // 浅色主题主要依赖 variables.scss 中的默认值
+  
+  body {
+    background-color: var(--jhm-bg-primary);
+    color: var(--jhm-text-primary);
+  }
+  
+  .card {
+    background-color: var(--jhm-bg-primary);
+    border-color: var(--jhm-border-light);
+  }
+  
+  .btn-primary {
+    background-color: var(--jhm-primary-500);
+    border-color: var(--jhm-primary-500);
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background-color: var(--jhm-primary-600);
+    border-color: var(--jhm-primary-600);
+  }
+}

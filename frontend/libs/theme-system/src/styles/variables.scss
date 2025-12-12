@@ -1,0 +1,168 @@
+/**
+ * 主题系统 - 全局变量
+ * 为金鸿马物流安全平台提供统一的设计系统
+ */
+
+// CSS变量定义，通过 :root 和 [data-theme] 选择器实现主题切换
+:root {
+  // ===== 品牌颜色系统 =====
+  --jhm-primary-50: #e8f4ff;
+  --jhm-primary-100: #c8e0ff;
+  --jhm-primary-200: #9fd0ff;
+  --jhm-primary-300: #76c0ff;
+  --jhm-primary-400: #4db0ff;
+  --jhm-primary-500: #1e90ff;  // 主品牌色
+  --jhm-primary-600: #1a75d4;
+  --jhm-primary-700: #165ba8;
+  --jhm-primary-800: #12407c;
+  --jhm-primary-900: #0e2750;
+
+  // ===== 中性颜色系统 =====
+  --jhm-neutral-50: #f8f9fa;
+  --jhm-neutral-100: #f1f3f4;
+  --jhm-neutral-200: #e8eaed;
+  --jhm-neutral-300: #dadce0;
+  --jhm-neutral-400: #bdc1c6;
+  --jhm-neutral-500: #9aa0a6;
+  --jhm-neutral-600: #80868b;
+  --jhm-neutral-700: #5f6368;
+  --jhm-neutral-800: #3c4043;
+  --jhm-neutral-900: #202124;
+
+  // ===== 状态颜色系统 =====
+  --jhm-success: #34c759;
+  --jhm-success-light: #d4edda;
+  --jhm-success-dark: #28a745;
+
+  --jhm-warning: #ff9500;
+  --jhm-warning-light: #fff3cd;
+  --jhm-warning-dark: #e68900;
+
+  --jhm-error: #ff3b30;
+  --jhm-error-light: #f8d7da;
+  --jhm-error-dark: #dc3545;
+
+  --jhm-info: #007aff;
+  --jhm-info-light: #d1ecf1;
+  --jhm-info-dark: #0056b3;
+
+  // ===== 文字颜色系统 =====
+  --jhm-text-primary: #202124;
+  --jhm-text-secondary: #5f6368;
+  --jhm-text-tertiary: #9aa0a6;
+  --jhm-text-disabled: #dadce0;
+
+  // ===== 背景颜色系统 =====
+  --jhm-bg-primary: #ffffff;
+  --jhm-bg-secondary: #f8f9fa;
+  --jhm-bg-tertiary: #f1f3f4;
+
+  // ===== 边框颜色系统 =====
+  --jhm-border-light: #e8eaed;
+  --jhm-border-medium: #dadce0;
+  --jhm-border-dark: #bdc1c6;
+
+  // ===== 阴影系统 =====
+  --jhm-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --jhm-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --jhm-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --jhm-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+  // ===== 排版系统 =====
+  --jhm-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --jhm-font-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+
+  // 字号系统
+  --jhm-text-xs: 0.75rem;    // 12px
+  --jhm-text-sm: 0.875rem;   // 14px
+  --jhm-text-base: 1rem;     // 16px
+  --jhm-text-lg: 1.125rem;   // 18px
+  --jhm-text-xl: 1.25rem;    // 20px
+  --jhm-text-2xl: 1.5rem;    // 24px
+  --jhm-text-3xl: 1.875rem;  // 30px
+  --jhm-text-4xl: 2.25rem;   // 36px
+
+  // 行高系统
+  --jhm-leading-none: 1;
+  --jhm-leading-tight: 1.25;
+  --jhm-leading-snug: 1.375;
+  --jhm-leading-normal: 1.5;
+  --jhm-leading-relaxed: 1.625;
+  --jhm-leading-loose: 2;
+
+  // 字体粗细
+  --jhm-font-thin: 100;
+  --jhm-font-light: 300;
+  --jhm-font-normal: 400;
+  --jhm-font-medium: 500;
+  --jhm-font-semibold: 600;
+  --jhm-font-bold: 700;
+  --jhm-font-extrabold: 800;
+  --jhm-font-black: 900;
+
+  // ===== 间距系统 =====
+  --jhm-space-0: 0;
+  --jhm-space-1: 0.25rem;   // 4px
+  --jhm-space-2: 0.5rem;    // 8px
+  --jhm-space-3: 0.75rem;   // 12px
+  --jhm-space-4: 1rem;      // 16px
+  --jhm-space-5: 1.25rem;   // 20px
+  --jhm-space-6: 1.5rem;    // 24px
+  --jhm-space-8: 2rem;      // 32px
+  --jhm-space-10: 2.5rem;   // 40px
+  --jhm-space-12: 3rem;     // 48px
+  --jhm-space-16: 4rem;     // 64px
+  --jhm-space-20: 5rem;     // 80px
+  --jhm-space-24: 6rem;     // 96px
+
+  // ===== 圆角系统 =====
+  --jhm-radius-none: 0;
+  --jhm-radius-sm: 0.125rem;  // 2px
+  --jhm-radius-md: 0.25rem;   // 4px
+  --jhm-radius-lg: 0.5rem;    // 8px
+  --jhm-radius-xl: 0.75rem;   // 12px
+  --jhm-radius-2xl: 1rem;     // 16px
+  --jhm-radius-full: 9999px;
+
+  // ===== 断点系统 =====
+  --jhm-breakpoint-sm: 640px;
+  --jhm-breakpoint-md: 768px;
+  --jhm-breakpoint-lg: 1024px;
+  --jhm-breakpoint-xl: 1280px;
+  --jhm-breakpoint-2xl: 1536px;
+
+  // ===== Z-index 系统 =====
+  --jhm-z-dropdown: 1000;
+  --jhm-z-sticky: 1020;
+  --jhm-z-fixed: 1030;
+  --jhm-z-modal-backdrop: 1040;
+  --jhm-z-modal: 1050;
+  --jhm-z-popover: 1060;
+  --jhm-z-tooltip: 1070;
+  --jhm-z-toast: 1080;
+}
+
+// 深色主题变量覆盖
+[data-theme="dark"] {
+  // ===== 深色主题文字颜色系统 =====
+  --jhm-text-primary: #ffffff;
+  --jhm-text-secondary: #e8eaed;
+  --jhm-text-tertiary: #bdc1c6;
+  --jhm-text-disabled: #80868b;
+
+  // ===== 深色主题背景颜色系统 =====
+  --jhm-bg-primary: #121212;
+  --jhm-bg-secondary: #1e1e1e;
+  --jhm-bg-tertiary: #2d2d2d;
+
+  // ===== 深色主题边框颜色系统 =====
+  --jhm-border-light: #2d2d2d;
+  --jhm-border-medium: #3c4043;
+  --jhm-border-dark: #5f6368;
+
+  // ===== 深色主题阴影调整 =====
+  --jhm-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --jhm-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  --jhm-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+  --jhm-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+}

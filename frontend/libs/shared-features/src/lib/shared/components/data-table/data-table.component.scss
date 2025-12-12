@@ -1,0 +1,40 @@
+.data-table-container {
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--jhm-bg-primary);
+
+    th, td {
+      padding: var(--jhm-space-3);
+      text-align: left;
+      border-bottom: 1px solid var(--jhm-border-light);
+    }
+
+    th {
+      background-color: var(--jhm-bg-secondary);
+      font-weight: var(--jhm-font-medium);
+      color: var(--jhm-text-secondary);
+      font-size: var(--jhm-text-sm);
+      white-space: nowrap;
+    }
+
+    td {
+      color: var(--jhm-text-primary);
+    }
+
+    tr:hover {
+      background-color: var(--jhm-bg-tertiary);
+    }
+  }
+
+  .pagination {
+    padding: var(--jhm-space-4);
+    text-align: right;
+    color: var(--jhm-text-secondary);
+    font-size: var(--jhm-text-sm);
+  }
+}

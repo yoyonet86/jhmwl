@@ -1,0 +1,111 @@
+<div class="driver-list-container">
+  <!-- 页面标题和操作栏 -->
+  <div class="page-header">
+    <h1 class="page-title">司机管理</h1>
+    <div class="header-actions">
+      <button ion-button color="primary" (click)="onAddDriver()">
+        <ion-icon name="add"></ion-icon>
+        添加司机
+      </button>
+    </div>
+  </div>
+
+  <!-- 统计卡片 -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon">
+        <ion-icon name="people"></ion-icon>
+      </div>
+      <div class="stat-content">
+        <div class="stat-value">{{ getStats().total }}</div>
+        <div class="stat-label">总司机数</div>
+      </div>
+    </div>
+    
+    <div class="stat-card">
+      <div class="stat-icon">
+        <ion-icon name="checkmark-circle" class="text-success"></ion-icon>
+      </div>
+      <div class="stat-content">
+        <div class="stat-value">{{ getStats().active }}</div>
+        <div class="stat-label">在职司机</div>
+      </div>
+    </div>
+    
+    <div class="stat-card">
+      <div class="stat-icon">
+        <ion-icon name="close-circle" class="text-error"></ion-icon>
+      </div>
+      <div class="stat-content">
+        <div class="stat-value">{{ getStats().inactive }}</div>
+        <div class="stat-label">非在职</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 搜索和筛选 -->
+  <div class="search-section">
+    <sf-search-form
+      [filters]="searchFilters"
+      [loading]="loading"
+      (searchChange)="onSearchChange($event)">
+    </sf-search-form>
+  </div>
+
+  <!-- 数据表格 -->
+  <div class="table-section">
+    <sf-data-table
+      [data]="drivers"
+      [loading]="loading"
+      [config]="tableConfig"
+      [total]="total"
+      [page]="page"
+      [size]="size"
+      (pageChange)="onPageChange($event)"
+      (sortChange)="onSortChange($event)"
+      (rowClick)="onViewDriver($event)"
+      [actionButtons]="actionButtons"
+      (actionClick)="onActionClick($event)">
+      
+      <!-- 自定义表格内容 -->
+      <ng-template #tableContent let-driver>
+        <td>{{ driver.employeeId }}</td>
+        <td>
+          <div class="driver-info">
+            <div class="driver-name">{{ driver.name }}</div>
+            <div class="driver-id-card">{{ driver.idCard }}</div>
+          </div>
+        </td>
+        <td>{{ driver.phone }}</td>
+        <td>{{ driver.licenseInfo?.licenseNumber }}</td>
+        <td>
+          <sf-status-badge
+            [status]="driver.status"
+            [class]="getStatusBadgeClass(driver.status)"
+            [text]="getStatusText(driver.status)">
+          </sf-status-badge>
+        </td>
+        <td>{{ driver.hireDate | date:'yyyy-MM-dd' }}</td>
+        <td>
+          <div class="license-expiry">
+            <span *ngIf="driver.licenseInfo?.expiryDate">
+              到期: {{ driver.licenseInfo.expiryDate | date:'yyyy-MM-dd' }}
+            </span>
+          </div>
+        </td>
+      </ng-template>
+      
+      <!-- 空状态 -->
+      <ng-template #emptyContent>
+        <div class="empty-state">
+          <ion-icon name="people-outline" size="large"></ion-icon>
+          <h3>暂无司机数据</h3>
+          <p>请添加司机信息或调整搜索条件</p>
+          <button ion-button color="primary" (click)="onAddDriver()">
+            添加司机
+          </button>
+        </div>
+      </ng-template>
+    </sf-data-table>
+  </div>
+</div>
