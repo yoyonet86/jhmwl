@@ -778,8 +778,35 @@ WHERE organization_id = ?
 - **Engine**: InnoDB
 - **Row Format**: DYNAMIC
 
+## Chinese Address Component
+
+The schema includes comprehensive support for Chinese administrative divisions (省市区三级联动):
+
+### Region Hierarchy
+
+```
+regions (provinces)
+  └── regions (cities)
+      └── regions (districts)
+```
+
+### Usage
+
+1. **Seed Data**: Import Chinese address data using `db/seed/chinese_address_data.sql`
+2. **Frontend Component**: Use the cascading address selector component
+3. **Dictionary Integration**: Addresses managed through the dictionary system
+
+**Key Features:**
+- Three-level cascading selection (Province → City → District)
+- Bilingual support (Chinese/English names)
+- Dictionary-based management for easy updates
+- Optimized with proper indexing and caching
+
+For detailed implementation, see: [Chinese Address Component Documentation](../components/chinese-address-component.md)
+
 ## Related Documentation
 
+- [Chinese Address Component](../components/chinese-address-component.md)
 - [API Documentation](../api/README.md)
 - [Architecture Overview](../architecture/overview.md)
 - [Migration Guide](./migrations/README.md)
