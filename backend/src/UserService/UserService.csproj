@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <RootNamespace>Jhm.LogisticsSafetyPlatform.UserService</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../Shared.Contracts/Shared.Contracts.csproj" />
+    <ProjectReference Include="../Shared.ServiceDefaults/Shared.ServiceDefaults.csproj" />
+  </ItemGroup>
+</Project>
